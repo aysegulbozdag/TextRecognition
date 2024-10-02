@@ -71,5 +71,8 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation (libs.firebase.ml.vision)
+    implementation (libs.play.services.vision)
+    implementation(libs.coil.compose)
+
 
 }
