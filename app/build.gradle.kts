@@ -73,6 +73,8 @@ dependencies {
     implementation (libs.firebase.ml.vision)
     implementation (libs.play.services.vision)
     implementation(libs.coil.compose)
+    implementation (libs.androidx.navigation.compose)
+
 
 
 }
