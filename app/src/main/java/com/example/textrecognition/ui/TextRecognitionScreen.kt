@@ -19,11 +19,11 @@ fun TextRecognitionScreen(modifier: Modifier) {
     ) {
 
         composable(TextRecognitionScreens.Main.name) {
-            MainScreen(modifier)
+            MainScreen(modifier, navController)
         }
 
         composable(TextRecognitionScreens.ImagePicker.name) {
-           // PickGalleryScreen()
+         CameraPreview()
         }
     }
 }
