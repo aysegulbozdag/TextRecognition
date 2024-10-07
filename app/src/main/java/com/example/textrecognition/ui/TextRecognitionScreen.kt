@@ -22,8 +22,8 @@ fun TextRecognitionScreen(modifier: Modifier) {
             MainScreen(modifier, navController)
         }
 
-        composable(TextRecognitionScreens.ImagePicker.name) {
-         CameraPreview()
+        composable(TextRecognitionScreens.CameraPreview.name) {
+         CameraPreview(navController)
         }
     }
 }

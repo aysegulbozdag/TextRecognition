@@ -35,11 +35,7 @@ class MainActivity : ComponentActivity() {
                     )
                 }
             }
-
-
         }
-
-
     }
 
     private fun hasRequiredPermissions(): Boolean {
