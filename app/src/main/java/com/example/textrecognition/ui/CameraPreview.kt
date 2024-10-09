@@ -55,7 +55,6 @@ fun CameraPreview(navController: NavHostController) {
     }
 
     val viewModel = viewModel<MainViewModel>()
-    val bitmaps by viewModel.bitmaps.collectAsState()
 
     Box(Modifier.fillMaxSize()) {
 
