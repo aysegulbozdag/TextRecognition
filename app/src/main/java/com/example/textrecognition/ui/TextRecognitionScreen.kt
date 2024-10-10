@@ -2,6 +2,7 @@ package com.example.textrecognition.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -11,7 +12,7 @@ import com.example.textrecognition.util.TextRecognitionScreens
 @Composable
 fun TextRecognitionScreen(modifier: Modifier) {
     val navController: NavHostController = rememberNavController()
-
+    val viewModel = viewModel<MainViewModel>()
     NavHost(
         navController = navController,
         startDestination = TextRecognitionScreens.Main.name,
@@ -19,11 +20,11 @@ fun TextRecognitionScreen(modifier: Modifier) {
     ) {
 
         composable(TextRecognitionScreens.Main.name) {
-            MainScreen(modifier, navController)
+            MainScreen(modifier, navController, viewModel)
         }
 
         composable(TextRecognitionScreens.CameraPreview.name) {
-         CameraPreview(navController)
+         CameraPreview(navController, viewModel)
         }
     }
 }

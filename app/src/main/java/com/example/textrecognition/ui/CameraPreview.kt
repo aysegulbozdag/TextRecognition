@@ -22,8 +22,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,7 +39,7 @@ import java.util.Date
 import java.util.Locale
 
 @Composable
-fun CameraPreview(navController: NavHostController) {
+fun CameraPreview(navController: NavHostController, viewModel: MainViewModel) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val context = LocalContext.current
 
@@ -54,7 +52,6 @@ fun CameraPreview(navController: NavHostController) {
         }
     }
 
-    val viewModel = viewModel<MainViewModel>()
 
     Box(Modifier.fillMaxSize()) {
 
@@ -77,8 +74,9 @@ fun CameraPreview(navController: NavHostController) {
                 onClick = {
                     takePhoto(
                         applicationContext = context,
+                        viewModel = viewModel,
                         controller = controller,
-                        navController,
+                        navController=navController,
                         onPhotoTaken = viewModel::onTakePhoto
                     )
                 },
@@ -101,7 +99,8 @@ private fun takePhoto(
     applicationContext: Context,
     controller: LifecycleCameraController,
     navController: NavHostController,
-    onPhotoTaken: (Bitmap) -> Unit
+    onPhotoTaken: (Bitmap) -> Unit,
+    viewModel: MainViewModel
 ) {
     val photoFile = createFile()
 
@@ -133,7 +132,7 @@ private fun takePhoto(
 
             override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                 val savedUri = outputFileResults.savedUri ?: Uri.fromFile(photoFile)
-                // Galeriye kaydetme
+                viewModel.setUriValue(savedUri)
                 MediaScannerConnection.scanFile(applicationContext, arrayOf(savedUri.path), null, null)
                 navController.navigate(TextRecognitionScreens.Main.name)
             }

@@ -1,6 +1,7 @@
 package com.example.textrecognition.ui
 
 import android.graphics.Bitmap
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import com.example.textrecognition.PhotoManager
 import com.google.firebase.ml.vision.FirebaseVision
@@ -17,13 +18,22 @@ class MainViewModel : ViewModel() {
     private val _resultTxt = MutableStateFlow<String?>(null)
     val resultTxt = _resultTxt.asStateFlow()
 
+    private val _uri = MutableStateFlow<Uri?>(null)
+    val uri = _uri.asStateFlow()
+
+
     fun onTakePhoto(bitmap: Bitmap) {
         _bitmaps.value += bitmap
     }
 
+    fun setUriValue(uri: Uri){
+        _uri.value = uri
+        println("recreate"+ uri.toString())
+    }
+
 
     private fun processTextRecognitionResult(firebaseVisionText: FirebaseVisionText): String {
-        var detectedText: String? = null
+        var detectedText: String? = ""
         val textBlockList = firebaseVisionText.textBlocks
 
         textBlockList.let {
