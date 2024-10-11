@@ -1,4 +1,4 @@
-package com.example.textrecognition
+package com.example.textrecognition.util
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -21,6 +21,4 @@ object PhotoManager {
             null
         }
     }
-
-
 }

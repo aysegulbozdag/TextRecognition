@@ -1,6 +1,5 @@
 package com.example.textrecognition.ui
 
-import android.provider.CalendarContract.Colors
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -26,14 +25,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
-import com.example.textrecognition.PhotoManager
+import com.example.textrecognition.util.PhotoManager
 import com.example.textrecognition.R
 import com.example.textrecognition.util.TextRecognitionScreens
 import com.google.firebase.ml.vision.common.FirebaseVisionImage

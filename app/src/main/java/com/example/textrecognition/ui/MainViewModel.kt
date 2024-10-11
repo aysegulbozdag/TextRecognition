@@ -3,7 +3,6 @@ package com.example.textrecognition.ui
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.lifecycle.ViewModel
-import com.example.textrecognition.PhotoManager
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.text.FirebaseVisionText
@@ -28,7 +27,6 @@ class MainViewModel : ViewModel() {
 
     fun setUriValue(uri: Uri){
         _uri.value = uri
-        println("recreate"+ uri.toString())
     }
 
 

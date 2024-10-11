@@ -1,4 +1,4 @@
-package com.example.textrecognition.ui
+package com.example.textrecognition.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -7,6 +7,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.textrecognition.ui.CameraPreview
+import com.example.textrecognition.ui.MainScreen
+import com.example.textrecognition.ui.MainViewModel
 import com.example.textrecognition.util.TextRecognitionScreens
 
 @Composable

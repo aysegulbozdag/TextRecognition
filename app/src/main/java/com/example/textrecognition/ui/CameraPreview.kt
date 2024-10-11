@@ -40,14 +40,13 @@ import java.util.Locale
 
 @Composable
 fun CameraPreview(navController: NavHostController, viewModel: MainViewModel) {
-    val lifecycleOwner = LocalLifecycleOwner.current
+    val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
     val context = LocalContext.current
 
     val controller = remember {
         LifecycleCameraController(context.applicationContext).apply {
             setEnabledUseCases(
-                CameraController.IMAGE_CAPTURE or
-                        CameraController.VIDEO_CAPTURE
+                CameraController.IMAGE_CAPTURE
             )
         }
     }
@@ -126,8 +125,6 @@ private fun takePhoto(
                 )
 
                 onPhotoTaken(rotatedBitmap)
-
-
             }
 
             override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
