@@ -86,7 +86,7 @@ fun MainScreen(modifier: Modifier, navController: NavController, viewModel: Main
 
                 Spacer(modifier = Modifier.height(10.dp))
 
-                Text(modifier = Modifier.weight(0.2f), text = it)
+                Text(modifier = Modifier.wrapContentSize().weight(0.3f), text = it)
             }
 
         }
