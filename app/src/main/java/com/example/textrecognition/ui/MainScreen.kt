@@ -1,5 +1,6 @@
 package com.example.textrecognition.ui
 
+import android.R.attr.content
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material.icons.filled.Image
@@ -21,6 +23,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -31,8 +34,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
-import com.example.textrecognition.util.PhotoManager
 import com.example.textrecognition.R
+import com.example.textrecognition.util.PhotoManager
 import com.example.textrecognition.util.TextRecognitionScreens
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 
@@ -60,7 +63,11 @@ fun MainScreen(modifier: Modifier, navController: NavController, viewModel: Main
     val firebaseVisionImage = photoUri?.let { PhotoManager.uriToBitmap(context, it) }
         ?.let { FirebaseVisionImage.fromBitmap(it) }
 
-    viewModel.getTextRecognitionResult(firebaseVisionImage)
+    LaunchedEffect(firebaseVisionImage) {
+        if (firebaseVisionImage != null) {
+            viewModel.getTextRecognitionResult(firebaseVisionImage)
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -71,29 +78,42 @@ fun MainScreen(modifier: Modifier, navController: NavController, viewModel: Main
         resultTxt?.let {
             Column(
                 modifier = Modifier
-                    .wrapContentSize()
+                    .fillMaxSize()
                     .weight(1F)
                     .padding(20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Image(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(1F),
+                    modifier = Modifier.fillMaxWidth().height(400.dp),
                     painter = painter,
-                    contentDescription = null
+                    contentDescription = null,
+                    contentScale = androidx.compose.ui.layout.ContentScale.Fit
                 )
 
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(30.dp))
 
-                Text(modifier = Modifier.wrapContentSize().weight(0.3f), text = it)
+                SelectionContainer(content = {
+                    Text(modifier = Modifier.wrapContentSize().weight(0.3f), text = it)
+                })
             }
 
+        } ?: run {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .weight(1F)
+                    .padding(20.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(text = "No Image Selected")
+            }
         }
 
         Row(
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxSize()
+                .weight(0.2F),
             verticalAlignment = Alignment.Bottom,
             horizontalArrangement = Arrangement.Absolute.SpaceEvenly,
         ) {
