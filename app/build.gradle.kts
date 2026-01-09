@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.textrecognition"
+    namespace = "com.abcoding.textrecognition"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.textrecognition"
+        applicationId = "com.abcoding.textrecognition"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

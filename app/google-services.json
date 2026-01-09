@@ -28,7 +28,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:308453190298:android:6d46d6a6f027dcad544d23",
         "android_client_info": {
-          "package_name": "com.example.textrecognition"
+          "package_name": "com.abcoding.textrecognition"
         }
       },
       "oauth_client": [],
